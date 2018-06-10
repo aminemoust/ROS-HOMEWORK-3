@@ -71,3 +71,13 @@ Infine si visualizzi il point cloud a partire dalla mappa salvata in pcd e si ef
     -rosrun ORB_SLAM2 PCL_VIEWER
   ```
   
+## Risultati:
+
+Point Cloud:<br>
+![Point Cloud](img/pcl_view.png)
+
+Euclidean clusterizetion with tolerance value of 0.15 :
+![Point Cloud](img/cluster2-15cm.png)
+
+Euclidean clusterizetion with tolerance value of 0.18 :
+![Point Cloud](img/cluster-18cm.png)
