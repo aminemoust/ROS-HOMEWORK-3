@@ -72,6 +72,8 @@ Infine si visualizzi il point cloud a partire dalla mappa salvata in pcd e si ef
   ```
   
 ## Risultati:
+OrbSlam point map:<br>
+![OrbSlam](img/orbslam.png)
 
 Point Cloud:<br>
 ![Point Cloud](img/pcl_view.png)
