@@ -4,6 +4,7 @@
  * @version 1.0
  **/
 #include  <memory> // We need to include this for shared_ptr
+#include <stdlib.h> 
 
 #include<ros/ros.h>
 
@@ -21,6 +22,8 @@
 //#include <pcl/sample_consensus/model_types.h>
 //#include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
+
+float tolerance;
 
 void create_cluster(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& cloud_in, std::vector<pcl::PointIndices>& cluster_indices,
                         std::shared_ptr<pcl::visualization::PCLVisualizer>& viewer){
@@ -72,7 +75,8 @@ void pcl_view(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& msg){
     ec.setMinClusterSize (50);
     //ec.setMaxClusterSize (25000);
     ec.setSearchMethod (tree);
-    ec.setClusterTolerance (0.15); // distance threshold
+    //ec.setClusterTolerance (0.15); // distance threshold
+    ec.setClusterTolerance (tolerance);
     ec.setInputCloud (cloud_filtered);
     ec.extract (cluster_indices);
 
@@ -119,6 +123,13 @@ void pcl_view(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& msg){
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "PCL_VIEWER");
+
+    if(argc != 2){
+        std::cout << "Usage: rosrun ORB_SLAM2 PCL_VIEWER tolerance_value" << endl;
+        return 1;
+    }
+
+    tolerance = atof(argv[1]);  // convert from string to float
 
     ros::NodeHandle nh;
     ros::Subscriber sub = nh.subscribe<pcl::PointCloud<pcl::PointXYZ>>("cloud_pcd", 1, pcl_view);
