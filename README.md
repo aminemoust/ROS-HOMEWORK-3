@@ -68,7 +68,7 @@ Infine si visualizzi il point cloud a partire dalla mappa salvata in pcd e si ef
     -cd path_repository
     -cd ORB_SLAM2
     -export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:$(pwd)/Examples/ROS
-    -rosrun ORB_SLAM2 PCL_VIEWER
+    -rosrun ORB_SLAM2 PCL_VIEWER tolerance_value
   ```
   
 ## Risultati:
